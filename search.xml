@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    <title><![CDATA[Flex布局]]></title>
+    <url>%2FFlex%E5%B8%83%E5%B1%80%2F</url>
+    <content type="text"><![CDATA[Flex 布局在传统的方式中，我们通常会设置盒模型的 display、position、float 等属性来进行布局，对于一些特殊布局运用起来不是很方便，比如垂直居中水平居中，如果运用了浮动特性的话，就需要清除浮动，不但比较麻烦，一不小心还会出现意料之外的布局，最后呈现的结果往往不尽人意。 Flexbox（全称 Flexible Box）布局，也叫 Flex 布局，意为“弹性布局”，顾名思义，Flex 布局中的元素具有可伸缩性，通过设置父元素的 display 属性为 display: flex | inline-flex; 其子元素便有了伸缩性，即使在子元素的宽高不确定的情况下，也能通过设置相关 css 属性来决定子元素的对齐方式、所占比例和空间分布。 Flex布局基本架构 图中的囊括概念有几点： Flex 布局是一整个模块，其中父元素称为 flex container，意为容器；子元素称为 flex item，意为项目； Flex 布局中有两条看不见的轴线：主轴（main axis）和交叉轴（cross axis）。默认的主轴是平行的，交叉轴是垂直于主轴的； 主轴的开始位置叫 main start，结束位置叫 main end；交叉轴的开始位置叫 cross start，结束位置叫 cross end； 子元素在主轴方向上的大小称为 main size，在交叉轴方向上的大小称为 cross size。 在常规的布局中，浏览器是从左到右排列，挤不下了就换行，在这种情况下，主轴是水平方向，交叉轴是垂直方向，主轴是从左到右，交叉轴是从上到下。在 Flex 布局中，默认的主轴方向也是水平的，交叉轴是垂直的，通过改变 flex-direction 和 flex-wrap 的属性值可以分别改变两个轴的方向和它们的开始位置、起始位置，这就让布局更加灵活多变了。 Felx布局容器的六个属性 flex-direction：定义主轴的方向，即项目的排列方向。 属性值：row(横1234) row-reverse column(竖1234) column-reverse flex-wrap：用来定义当一行放不下时，项目如何换。属性值：nowwrap(不换行) wrap(换行，第一行在上面) wrap-reverse(换行) flex-flow：flex-direction 和 flex-wrap 的简写，默认值是 row no-wrap。 justify-content：定义项目在主轴上的对齐方式。属性值：flex-start flex-end center space-between space-around align-items：定义项目在交叉轴上如何对齐。 align-content：定义了多根轴线的对齐方式。若此时主轴在水平方向，交叉轴在垂直方向，align-content 就可以理解为多行在垂直方向的对齐方式。项目排列只有一行时，该属性不起作用。 项目属性 order: 定义了项目的排列顺序，默认值为 0，数值越小，排列越靠前。 flex-grow: 定义了项目的放大比例，默认为 0，也就是即使存在剩余空间，也不会放大。 flex-shrink: 定义了项目的缩小比例，默认为 1，即当空间不足时，项目会自动缩小。 flex-basis: 定义了在分配多余的空间之前，项目占据的主轴空间，默认值为 auto，即项目原来的大小。浏览器会根据这个属性来计算主轴是否有多余的空间。 flex: 属性是 flex-grow、flex-shrink、flex-basis 的缩写，默认值是 0 1 auto，后两个属性可选。 align-self：用来定义单个项目与其他项目不一样的对齐方式，可以覆盖 align-items 属性。默认属性值是 auto，即继承父元素的 align-items 属性值。当没有父元素时，它的表现等同于 stretch。 简单实例三栏布局12345&lt;div class="container"&gt; &lt;div class="center"&gt;center&lt;/div&gt; &lt;div class="left"&gt;left&lt;/div&gt; &lt;div class="right"&gt;right&lt;/div&gt;&lt;/div&gt; 123456789101112131415161718.container &#123; display: flex;&#125;.center &#123; height: 150px; background-color: #94E8FF;&#125;.left &#123; width: 100px; height: 150px; background-color: #FFB5BF;&#125;.right &#123; width: 200px; height: 150px; background-color: #8990D5;&#125; 如何将 .left 排列在最左边，和如何将 .center 占满剩余空间？order 属性可以改变项目的排列顺序，flex-grow 可以定义项目的放大比例。1234567.left &#123; order: -1;&#125;.center &#123; flex-grow: 1; /* flex: 1; 也行 */&#125; 居中问题当子元素的高度不确定时，处理垂直居中就比较麻烦，但是使用 Flex 布局中容器有关对齐方式的属性便能快速解决，以下代码子元素在父元素中是水平、垂直居中的。12345.container &#123; display: flex; justify-content: center; align-items: center;&#125; 推荐阅读：Flex 布局教程：实例篇。]]></content>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[CSS 盒模型]]></title>
+    <url>%2FCSS%E7%9B%92%E6%A8%A1%E5%9E%8B%2F</url>
+    <content type="text"><![CDATA[在网页布局中，我们可以将 HTML 标签看成一个个矩形盒子，盒模型就是用来描述这些矩形盒子所占的空间大小。 相关属性在浏览器中打开“开发者工具”，用最左侧的箭头图标选中右侧的 div 元素，查看“Elements”下面的“Computed”，便可以一目了然的查看选择元素的各类属性。请看下图： padding 指内边距，是元素内容和边框之间的部分, margin 指外边距，用来定义元素周围的空间。 盒模型的分类由于浏览器的差异性，盒模型分为标准盒模型和IE盒模型，它们的呈现方式和对盒子大小的计算略有不同。 标准盒模型 元素的 width、height 只包含内容 content，不包含 border 和 padding 值； 盒子的大小由元素的宽高、边框和内边距决定。 IE盒模型 元素的 width、height 不仅包括 content，还包括 border 和 padding； 盒子的大小取决于 width、height，修改 border 和 padding 值不能改变盒子的大小。]]></content>
   </entry>
 </search>
