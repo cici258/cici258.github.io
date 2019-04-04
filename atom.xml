@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.zhaoqiblog.top/"/>
-  <updated>2019-03-20T10:29:08.759Z</updated>
+  <updated>2019-04-04T12:44:37.970Z</updated>
   <id>http://www.zhaoqiblog.top/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>正则表达式</title>
+    <link href="http://www.zhaoqiblog.top/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+    <id>http://www.zhaoqiblog.top/正则表达式/</id>
+    <published>2019-04-04T11:37:03.000Z</published>
+    <updated>2019-04-04T12:44:37.970Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="正则表达式符号与方法"><a href="#正则表达式符号与方法" class="headerlink" title="正则表达式符号与方法"></a>正则表达式符号与方法</h2><h3 id="常用符号"><a href="#常用符号" class="headerlink" title="常用符号"></a>常用符号</h3><p><img src="https://static.oschina.net/uploads/space/2017/1014/144139_5p8C_3080373.png" alt="图示" title="正则"></p><h3 id="常用方法："><a href="#常用方法：" class="headerlink" title="常用方法："></a>常用方法：</h3><p>findall()：匹配所有符合规律的内容 返回包含结果的列表。  传入参数re.S 使 . 包括 \n 。<br>search()：匹配并提取第一个符合规律的内容，返回一个正则表达式对象（Object）。</p><h4 id="sub-：替换符合规律的内容，返回替换后的值。"><a href="#sub-：替换符合规律的内容，返回替换后的值。" class="headerlink" title="sub()：替换符合规律的内容，返回替换后的值。"></a>sub()：替换符合规律的内容，返回替换后的值。</h4><p>sub()应用：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">old_url = <span class="string">"http://www.baidu.com/?pageNum=1"</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,total_page+<span class="number">1</span>):</span><br><span class="line">    new_links = re.sub(<span class="string">'pageNum=\d+'</span>,<span class="string">'pageNum=%d'</span> %i , old_url, re.S)</span><br><span class="line">    print(new_links)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">http://www.baidu.com/?pageNum=1</span><br><span class="line">http://www.baidu.com/?pageNum=2.....(一直到20)</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;正则表达式符号与方法&quot;&gt;&lt;a href=&quot;#正则表达式符号与方法&quot; class=&quot;headerlink&quot; title=&quot;正则表达式符号与方法&quot;&gt;&lt;/a&gt;正则表达式符号与方法&lt;/h2&gt;&lt;h3 id=&quot;常用符号&quot;&gt;&lt;a href=&quot;#常用符号&quot; class=&quot;head
+      
+    
+    </summary>
+    
+      <category term="正则" scheme="http://www.zhaoqiblog.top/categories/%E6%AD%A3%E5%88%99/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>CSS居中</title>
-    <link href="http://www.zhaoqiblog.top/%E5%AF%BC%E8%88%AA%E6%9D%A1%E8%8F%9C%E5%8D%95/"/>
-    <id>http://www.zhaoqiblog.top/导航条菜单/</id>
+    <link href="http://www.zhaoqiblog.top/CSS%E5%B1%85%E4%B8%AD/"/>
+    <id>http://www.zhaoqiblog.top/CSS居中/</id>
     <published>2019-03-11T12:06:20.000Z</published>
-    <updated>2019-03-20T10:29:08.759Z</updated>
+    <updated>2019-04-03T13:45:04.873Z</updated>
     
     <content type="html"><![CDATA[<h2 id="文字垂直居中"><a href="#文字垂直居中" class="headerlink" title="文字垂直居中"></a>文字垂直居中</h2><p>height和line-height设置成一样的</p><h2 id="块元素垂直居中于父元素"><a href="#块元素垂直居中于父元素" class="headerlink" title="块元素垂直居中于父元素"></a>块元素垂直居中于父元素</h2><p>将父元素设置为相对定位 position：relative，子元素设置为绝对定位 position：absolute；top：50%；margin-top设置为负height的一半</p><h2 id="块元素容器水平居中"><a href="#块元素容器水平居中" class="headerlink" title="块元素容器水平居中"></a>块元素容器水平居中</h2><p>第一种：margin：0 auto；<br>第二种：width: 100px;left:50%;margin-left:-50px;  (负边距居中)</p><h2 id="背景图覆盖模式"><a href="#背景图覆盖模式" class="headerlink" title="背景图覆盖模式"></a>背景图覆盖模式</h2><p>在父元素上添加background-size：cover。</p>]]></content>
     
