@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[正则表达式]]></title>
     <url>%2F%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[正则表达式符号与方法常用符号 常用方法：findall()：匹配所有符合规律的内容 返回包含结果的列表。 传入参数re.S 使 . 包括 \n 。search()：匹配并提取第一个符合规律的内容，返回一个正则表达式对象（Object）。 sub()：替换符合规律的内容，返回替换后的值。sub()应用：1234567old_url = "http://www.baidu.com/?pageNum=1"for i in range(1,total_page+1): new_links = re.sub('pageNum=\d+','pageNum=%d' %i , old_url, re.S) print(new_links)#输出结果http://www.baidu.com/?pageNum=1http://www.baidu.com/?pageNum=2.....(一直到20)]]></content>
+    <content type="text"><![CDATA[正则表达式符号与方法常用符号图片看不太清楚，可以右键另存为~ 或者鼠标拖动一下到另外一个网页查看 - - 常用方法：findall()：匹配所有符合规律的内容 返回包含结果的列表。 传入参数re.S 使 . 包括 \n 。search()：匹配并提取第一个符合规律的内容，返回一个正则表达式对象（Object）。 sub()：替换符合规律的内容，返回替换后的值。sub()应用：1234567old_url = "http://www.baidu.com/?pageNum=1"for i in range(1,total_page+1): new_links = re.sub('pageNum=\d+','pageNum=%d' %i , old_url, re.S) print(new_links)#输出结果http://www.baidu.com/?pageNum=1http://www.baidu.com/?pageNum=2.....(一直到20)]]></content>
       <categories>
         <category>正则</category>
       </categories>
