@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.zhaoqiblog.top/"/>
-  <updated>2019-04-04T13:49:43.099Z</updated>
+  <updated>2019-04-06T05:21:11.402Z</updated>
   <id>http://www.zhaoqiblog.top/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>多线程爬取猫眼电影TOP100</title>
+    <link href="http://www.zhaoqiblog.top/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%88%AC%E5%8F%96%E7%8C%AB%E7%9C%BC%E7%94%B5%E5%BD%B1TOP100/"/>
+    <id>http://www.zhaoqiblog.top/多线程爬取猫眼电影TOP100/</id>
+    <published>2019-04-06T05:00:19.000Z</published>
+    <updated>2019-04-06T05:21:11.402Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="使用requests库爬取猫眼电影榜单top100"><a href="#使用requests库爬取猫眼电影榜单top100" class="headerlink" title="使用requests库爬取猫眼电影榜单top100"></a>使用requests库爬取猫眼电影榜单top100</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> re </span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pool</span><br><span class="line"><span class="keyword">from</span> requests.exceptions <span class="keyword">import</span> RequestException</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_longpage</span><span class="params">(url)</span>:</span>  <span class="comment">#获取单页数据</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        response =  requests.get(url)</span><br><span class="line">        <span class="keyword">if</span> response.status_code == <span class="number">200</span>:</span><br><span class="line">            <span class="keyword">return</span> response.text</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    <span class="keyword">except</span> RequestException:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_one_page</span><span class="params">(html)</span>:</span>   <span class="comment">#解析获取到的数据</span></span><br><span class="line">    pattern = re.compile(<span class="string">'&lt;dd&gt;.*?board-index.*?&gt;(\d+)&lt;/i&gt;.*?data-src="(.*?)".*?&lt;a.*?&gt;(.*?)'</span> </span><br><span class="line">                         +<span class="string">'&lt;/a&gt;.*?star"&gt;(.*?)&lt;/p&gt;.*?releasetime"&gt;(.*?)&lt;/p&gt;.*?integer"&gt;(.*?)&lt;/i&gt;.*?fraction"&gt;(.*?)&lt;/i&gt;'</span>,re.S)   <span class="comment">#re.compile() 将正则表达式的字符串形式编译为Pattern实例</span></span><br><span class="line">    items = re.findall(pattern,html)  </span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:  <span class="comment">#把数据生成字典形式</span></span><br><span class="line">        <span class="keyword">yield</span> &#123;</span><br><span class="line">            <span class="string">'index'</span>: item[<span class="number">0</span>],</span><br><span class="line">            <span class="string">'image'</span>: item[<span class="number">1</span>],</span><br><span class="line">            <span class="string">'title'</span>: item[<span class="number">2</span>],</span><br><span class="line">            <span class="string">'actor'</span>: item[<span class="number">3</span>].strip()[<span class="number">3</span>:],</span><br><span class="line">            <span class="string">'time'</span>:  item[<span class="number">4</span>].strip()[<span class="number">5</span>:],</span><br><span class="line">            <span class="string">'score'</span>: item[<span class="number">5</span>]+item[<span class="number">6</span>]</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_to_file</span><span class="params">(content)</span>:</span> <span class="comment">#写入文件</span></span><br><span class="line">    <span class="keyword">with</span> open(<span class="string">'result.txt'</span>,<span class="string">'a'</span>,encoding=<span class="string">'utf-8'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        f.write(json.dumps(content,ensure_ascii=<span class="literal">False</span>) + <span class="string">'\n'</span>)  </span><br><span class="line">        f.close()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">(page)</span>:</span></span><br><span class="line">    url = <span class="string">"https://maoyan.com/board/4?offset="</span> + str(page)</span><br><span class="line">    html = get_longpage(url)</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> parse_one_page(html):</span><br><span class="line">        write_to_file(item)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    pool = Pool()   <span class="comment">#多线程</span></span><br><span class="line">    pool.map(main,[i*<span class="number">10</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>)])</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;使用requests库爬取猫眼电影榜单top100&quot;&gt;&lt;a href=&quot;#使用requests库爬取猫眼电影榜单top100&quot; class=&quot;headerlink&quot; title=&quot;使用requests库爬取猫眼电影榜单top100&quot;&gt;&lt;/a&gt;使用requests库
+      
+    
+    </summary>
+    
+      <category term="爬虫" scheme="http://www.zhaoqiblog.top/categories/%E7%88%AC%E8%99%AB/"/>
+    
+    
+      <category term="爬虫" scheme="http://www.zhaoqiblog.top/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
+  
+  <entry>
     <title>正则表达式</title>
     <link href="http://www.zhaoqiblog.top/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     <id>http://www.zhaoqiblog.top/正则表达式/</id>
     <published>2019-04-04T11:37:03.000Z</published>
-    <updated>2019-04-04T13:49:43.099Z</updated>
+    <updated>2019-04-06T05:06:14.042Z</updated>
     
     <content type="html"><![CDATA[<h2 id="正则表达式符号与方法"><a href="#正则表达式符号与方法" class="headerlink" title="正则表达式符号与方法"></a>正则表达式符号与方法</h2><h3 id="常用符号"><a href="#常用符号" class="headerlink" title="常用符号"></a>常用符号</h3><p>图片看不太清楚，可以右键另存为~ 或者鼠标拖动一下到另外一个网页查看 - -<br><img src="https://static.oschina.net/uploads/space/2017/1014/144139_5p8C_3080373.png" width="1200" hegiht="1600" align="center"></p><h3 id="常用方法："><a href="#常用方法：" class="headerlink" title="常用方法："></a>常用方法：</h3><p>findall()：匹配所有符合规律的内容 返回包含结果的列表。  传入参数re.S 使 . 包括 \n 。<br>search()：匹配并提取第一个符合规律的内容，返回一个正则表达式对象（Object）。</p><h4 id="sub-：替换符合规律的内容，返回替换后的值。"><a href="#sub-：替换符合规律的内容，返回替换后的值。" class="headerlink" title="sub()：替换符合规律的内容，返回替换后的值。"></a>sub()：替换符合规律的内容，返回替换后的值。</h4><p>sub()应用：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">old_url = <span class="string">"http://www.baidu.com/?pageNum=1"</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,total_page+<span class="number">1</span>):</span><br><span class="line">    new_links = re.sub(<span class="string">'pageNum=\d+'</span>,<span class="string">'pageNum=%d'</span> %i , old_url, re.S)</span><br><span class="line">    print(new_links)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">http://www.baidu.com/?pageNum=1</span><br><span class="line">http://www.baidu.com/?pageNum=2.....(一直到20)</span><br></pre></td></tr></table></figure></p>]]></content>
     
@@ -34,8 +59,10 @@
     
     </summary>
     
-      <category term="正则" scheme="http://www.zhaoqiblog.top/categories/%E6%AD%A3%E5%88%99/"/>
+      <category term="爬虫" scheme="http://www.zhaoqiblog.top/categories/%E7%88%AC%E8%99%AB/"/>
     
+    
+      <category term="爬虫" scheme="http://www.zhaoqiblog.top/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
@@ -44,7 +71,7 @@
     <link href="http://www.zhaoqiblog.top/CSS%E5%B1%85%E4%B8%AD/"/>
     <id>http://www.zhaoqiblog.top/CSS居中/</id>
     <published>2019-03-11T12:06:20.000Z</published>
-    <updated>2019-04-03T13:45:04.873Z</updated>
+    <updated>2019-04-06T04:54:56.111Z</updated>
     
     <content type="html"><![CDATA[<h2 id="文字垂直居中"><a href="#文字垂直居中" class="headerlink" title="文字垂直居中"></a>文字垂直居中</h2><p>height和line-height设置成一样的</p><h2 id="块元素垂直居中于父元素"><a href="#块元素垂直居中于父元素" class="headerlink" title="块元素垂直居中于父元素"></a>块元素垂直居中于父元素</h2><p>将父元素设置为相对定位 position：relative，子元素设置为绝对定位 position：absolute；top：50%；margin-top设置为负height的一半</p><h2 id="块元素容器水平居中"><a href="#块元素容器水平居中" class="headerlink" title="块元素容器水平居中"></a>块元素容器水平居中</h2><p>第一种：margin：0 auto；<br>第二种：width: 100px;left:50%;margin-left:-50px;  (负边距居中)</p><h2 id="背景图覆盖模式"><a href="#背景图覆盖模式" class="headerlink" title="背景图覆盖模式"></a>背景图覆盖模式</h2><p>在父元素上添加background-size：cover。</p>]]></content>
     
@@ -58,6 +85,10 @@
     
     </summary>
     
+      <category term="CSS" scheme="http://www.zhaoqiblog.top/categories/CSS/"/>
+    
+    
+      <category term="CSS" scheme="http://www.zhaoqiblog.top/tags/CSS/"/>
     
   </entry>
   
@@ -66,7 +97,7 @@
     <link href="http://www.zhaoqiblog.top/Flex%E5%B8%83%E5%B1%80/"/>
     <id>http://www.zhaoqiblog.top/Flex布局/</id>
     <published>2019-03-09T08:01:38.000Z</published>
-    <updated>2019-03-09T11:53:56.443Z</updated>
+    <updated>2019-04-06T04:55:01.117Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Flex-布局"><a href="#Flex-布局" class="headerlink" title="Flex 布局"></a>Flex 布局</h1><p>在传统的方式中，我们通常会设置盒模型的 display、position、float 等属性来进行布局，对于一些特殊布局运用起来不是很方便，比如垂直居中水平居中，如果运用了浮动特性的话，就需要清除浮动，不但比较麻烦，一不小心还会出现意料之外的布局，最后呈现的结果往往不尽人意。</p><p>Flexbox（全称 Flexible Box）布局，也叫 Flex 布局，意为“弹性布局”，顾名思义，Flex 布局中的元素具有可伸缩性，通过设置父元素的 display 属性为 display: flex | inline-flex; 其子元素便有了伸缩性，即使在子元素的宽高不确定的情况下，也能通过设置相关 css 属性来决定子元素的对齐方式、所占比例和空间分布。</p><h2 id="Flex布局基本架构"><a href="#Flex布局基本架构" class="headerlink" title="Flex布局基本架构"></a>Flex布局基本架构</h2><p><img src="https://cdn.nlark.com/yuque/0/2018/png/199663/1542896341060-89f557f2-6905-48c6-bf07-81a5f7a1adb0.png" alt="Flex布局图示" title="example"></p><p>图中的囊括概念有几点：</p><ul><li>Flex 布局是一整个模块，其中父元素称为 flex container，意为容器；子元素称为 flex item，意为项目；</li><li>Flex 布局中有两条看不见的轴线：主轴（main axis）和交叉轴（cross axis）。默认的主轴是平行的，交叉轴是垂直于主轴的；</li><li>主轴的开始位置叫 main start，结束位置叫 main end；交叉轴的开始位置叫 cross start，结束位置叫 cross end；</li><li>子元素在主轴方向上的大小称为 main size，在交叉轴方向上的大小称为 cross size。</li></ul><p>在常规的布局中，浏览器是从左到右排列，挤不下了就换行，在这种情况下，主轴是水平方向，交叉轴是垂直方向，主轴是从左到右，交叉轴是从上到下。在 Flex 布局中，默认的主轴方向也是水平的，交叉轴是垂直的，通过改变 flex-direction 和 flex-wrap 的属性值可以分别改变两个轴的方向和它们的开始位置、起始位置，这就让布局更加灵活多变了。</p><h3 id="Felx布局容器的六个属性"><a href="#Felx布局容器的六个属性" class="headerlink" title="Felx布局容器的六个属性"></a>Felx布局容器的六个属性</h3><ul><li><strong>flex-direction</strong>：定义主轴的方向，即项目的排列方向。 属性值：row(横1234) row-reverse column(竖1234) column-reverse</li><li><strong>flex-wrap</strong>：用来定义当一行放不下时，项目如何换。属性值：nowwrap(不换行)  wrap(换行，第一行在上面) wrap-reverse(换行)</li><li><strong>flex-flow</strong>：flex-direction 和 flex-wrap 的简写，默认值是 row no-wrap。</li><li><strong>justify-content</strong>：定义项目在主轴上的对齐方式。属性值：flex-start flex-end center space-between space-around</li><li><strong>align-items</strong>：定义项目在交叉轴上如何对齐。</li><li><strong>align-content</strong>：定义了多根轴线的对齐方式。若此时主轴在水平方向，交叉轴在垂直方向，align-content 就可以理解为多行在垂直方向的对齐方式。项目排列只有一行时，该属性不起作用。</li></ul><h3 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h3><ul><li><strong>order</strong>: 定义了项目的排列顺序，默认值为 0，数值越小，排列越靠前。</li><li><strong>flex-grow</strong>: 定义了项目的放大比例，默认为 0，也就是即使存在剩余空间，也不会放大。</li><li><strong>flex-shrink</strong>: 定义了项目的缩小比例，默认为 1，即当空间不足时，项目会自动缩小。</li><li><strong>flex-basis</strong>: 定义了在分配多余的空间之前，项目占据的主轴空间，默认值为 auto，即项目原来的大小。浏览器会根据这个属性来计算主轴是否有多余的空间。<br><img src="https://cdn.nlark.com/yuque/0/2018/png/199663/1543133040010-941a4e3b-5aad-429a-888f-b0ed4da2e460.png" alt="图示" title="flex-basis"></li><li><strong>flex</strong>: 属性是 flex-grow、flex-shrink、flex-basis 的缩写，默认值是 0 1 auto，后两个属性可选。</li><li><strong>align-self</strong>：用来定义单个项目与其他项目不一样的对齐方式，可以覆盖 align-items 属性。默认属性值是 auto，即继承父元素的 align-items 属性值。当没有父元素时，它的表现等同于 stretch。</li></ul><h2 id="简单实例"><a href="#简单实例" class="headerlink" title="简单实例"></a>简单实例</h2><h3 id="三栏布局"><a href="#三栏布局" class="headerlink" title="三栏布局"></a>三栏布局</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"center"</span>&gt;</span>center<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"left"</span>&gt;</span>left<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"right"</span>&gt;</span>right<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure><hr><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.center</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#94E8FF</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#FFB5BF</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.right</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#8990D5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>如何将 .left 排列在最左边，和如何将 .center 占满剩余空间？order 属性可以改变项目的排列顺序，flex-grow 可以定义项目的放大比例。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.left</span> &#123;</span><br><span class="line">    <span class="attribute">order</span>: -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.center</span> &#123;</span><br><span class="line">    <span class="attribute">flex-grow</span>: <span class="number">1</span>;   <span class="comment">/* flex: 1; 也行 */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h3 id="居中问题"><a href="#居中问题" class="headerlink" title="居中问题"></a>居中问题</h3><p>当子元素的高度不确定时，处理垂直居中就比较麻烦，但是使用 Flex 布局中容器有关对齐方式的属性便能快速解决，以下代码子元素在父元素中是水平、垂直居中的。<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.container</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: center;</span><br><span class="line">    <span class="attribute">align-items</span>: center;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>推荐阅读：<a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="noopener">Flex 布局教程：实例篇。</a></p>]]></content>
     
@@ -79,6 +110,8 @@
     
     </summary>
     
+      <category term="CSS" scheme="http://www.zhaoqiblog.top/categories/CSS/"/>
+    
     
       <category term="CSS" scheme="http://www.zhaoqiblog.top/tags/CSS/"/>
     
@@ -89,7 +122,7 @@
     <link href="http://www.zhaoqiblog.top/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B/"/>
     <id>http://www.zhaoqiblog.top/CSS盒模型/</id>
     <published>2019-02-28T02:59:43.596Z</published>
-    <updated>2019-03-09T11:18:14.447Z</updated>
+    <updated>2019-04-06T04:54:59.117Z</updated>
     
     <content type="html"><![CDATA[<p>在网页布局中，我们可以将 HTML 标签看成一个个矩形盒子，盒模型就是用来描述这些矩形盒子所占的空间大小。</p><h2 id="相关属性"><a href="#相关属性" class="headerlink" title="相关属性"></a>相关属性</h2><p>在浏览器中打开“开发者工具”，用最左侧的箭头图标选中右侧的 div 元素，查看“Elements”下面的“Computed”，便可以一目了然的查看选择元素的各类属性。请看下图：</p><p>padding 指内边距，是元素内容和边框之间的部分,  margin 指外边距，用来定义元素周围的空间。</p><h2 id="盒模型的分类"><a href="#盒模型的分类" class="headerlink" title="盒模型的分类"></a>盒模型的分类</h2><p>由于浏览器的差异性，盒模型分为标准盒模型和IE盒模型，它们的呈现方式和对盒子大小的计算略有不同。</p><h3 id="标准盒模型"><a href="#标准盒模型" class="headerlink" title="标准盒模型"></a>标准盒模型</h3><ul><li>元素的 width、height 只包含内容 content，不包含 border 和 padding 值；</li><li>盒子的大小由元素的宽高、边框和内边距决定。</li></ul><h3 id="IE盒模型"><a href="#IE盒模型" class="headerlink" title="IE盒模型"></a>IE盒模型</h3><ul><li>元素的 width、height 不仅包括 content，还包括 border 和 padding；</li><li>盒子的大小取决于 width、height，修改 border 和 padding 值不能改变盒子的大小。</li></ul>]]></content>
     
@@ -103,6 +136,10 @@
     
     </summary>
     
+      <category term="CSS" scheme="http://www.zhaoqiblog.top/categories/CSS/"/>
+    
+    
+      <category term="CSS" scheme="http://www.zhaoqiblog.top/tags/CSS/"/>
     
   </entry>
   
