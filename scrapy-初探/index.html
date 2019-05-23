@@ -96,20 +96,20 @@
 
 
 
-  <meta name="description" content="正则表达式符号与方法常用符号图片看不太清楚，可以右键另存为~ 或者鼠标拖动一下到另外一个网页查看 - - 常用方法：findall()：匹配所有符合规律的内容 返回包含结果的列表。  传入参数re.S 使 . 包括 \n 。search()：匹配并提取第一个符合规律的内容，返回一个正则表达式对象（Object）。 sub()：替换符合规律的内容，返回替换后的值。sub()应用：1234567old">
-<meta name="keywords" content="爬虫">
+  <meta name="description" content="scrapy四部曲 新建项目 (scrapy startproject xxx)：新建一个新的爬虫项目（1:scrapy startproject mySpider 2：scrapy genspider xxx         “xxx.cn”）  明确目标 （编写items.py）：明确你想要抓取的目标，创建数据模型类。 items.pyitems.py里存放的是我们要爬取数据的字段信息,比如我">
+<meta name="keywords" content="scrapy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式">
-<meta property="og:url" content="http://www.zhaoqiblog.top/正则表达式/index.html">
+<meta property="og:title" content="scrapy 初探">
+<meta property="og:url" content="http://www.zhaoqiblog.top/scrapy-初探/index.html">
 <meta property="og:site_name" content="所爱隔山海">
-<meta property="og:description" content="正则表达式符号与方法常用符号图片看不太清楚，可以右键另存为~ 或者鼠标拖动一下到另外一个网页查看 - - 常用方法：findall()：匹配所有符合规律的内容 返回包含结果的列表。  传入参数re.S 使 . 包括 \n 。search()：匹配并提取第一个符合规律的内容，返回一个正则表达式对象（Object）。 sub()：替换符合规律的内容，返回替换后的值。sub()应用：1234567old">
+<meta property="og:description" content="scrapy四部曲 新建项目 (scrapy startproject xxx)：新建一个新的爬虫项目（1:scrapy startproject mySpider 2：scrapy genspider xxx         “xxx.cn”）  明确目标 （编写items.py）：明确你想要抓取的目标，创建数据模型类。 items.pyitems.py里存放的是我们要爬取数据的字段信息,比如我">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://static.oschina.net/uploads/space/2017/1014/144139_5p8C_3080373.png">
-<meta property="og:updated_time" content="2019-04-06T05:06:14.042Z">
+<meta property="og:image" content="https://segmentfault.com/img/bVco7P">
+<meta property="og:updated_time" content="2019-05-23T02:57:21.436Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="正则表达式">
-<meta name="twitter:description" content="正则表达式符号与方法常用符号图片看不太清楚，可以右键另存为~ 或者鼠标拖动一下到另外一个网页查看 - - 常用方法：findall()：匹配所有符合规律的内容 返回包含结果的列表。  传入参数re.S 使 . 包括 \n 。search()：匹配并提取第一个符合规律的内容，返回一个正则表达式对象（Object）。 sub()：替换符合规律的内容，返回替换后的值。sub()应用：1234567old">
-<meta name="twitter:image" content="https://static.oschina.net/uploads/space/2017/1014/144139_5p8C_3080373.png">
+<meta name="twitter:title" content="scrapy 初探">
+<meta name="twitter:description" content="scrapy四部曲 新建项目 (scrapy startproject xxx)：新建一个新的爬虫项目（1:scrapy startproject mySpider 2：scrapy genspider xxx         “xxx.cn”）  明确目标 （编写items.py）：明确你想要抓取的目标，创建数据模型类。 items.pyitems.py里存放的是我们要爬取数据的字段信息,比如我">
+<meta name="twitter:image" content="https://segmentfault.com/img/bVco7P">
 
 
 
@@ -118,7 +118,7 @@
 
 
 
-  <link rel="canonical" href="http://www.zhaoqiblog.top/正则表达式/">
+  <link rel="canonical" href="http://www.zhaoqiblog.top/scrapy-初探/">
 
 
 
@@ -128,7 +128,7 @@
   };
 </script>
 
-  <title>正则表达式 | 所爱隔山海</title>
+  <title>scrapy 初探 | 所爱隔山海</title>
   
 
 
@@ -377,7 +377,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.zhaoqiblog.top/正则表达式/">
+    <link itemprop="mainEntityOfPage" href="http://www.zhaoqiblog.top/scrapy-初探/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zhao Qi">
@@ -394,7 +394,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">正则表达式
+          <h1 class="post-title" itemprop="name headline">scrapy 初探
 
               
             
@@ -420,7 +420,7 @@
                 
               
 
-              <time title="创建时间：2019-04-04 19:37:03" itemprop="dateCreated datePublished" datetime="2019-04-04T19:37:03+08:00">2019-04-04</time>
+              <time title="创建时间：2019-05-20 13:47:42" itemprop="dateCreated datePublished" datetime="2019-05-20T13:47:42+08:00">2019-05-20</time>
             
 
             
@@ -437,29 +437,11 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-06 13:06:14" itemprop="dateModified" datetime="2019-04-06T13:06:14+08:00">2019-04-06</time>
+                <time title="修改时间：2019-05-23 10:57:21" itemprop="dateModified" datetime="2019-05-23T10:57:21+08:00">2019-05-23</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/爬虫/" itemprop="url" rel="index"><span itemprop="name">爬虫</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -496,9 +478,41 @@
       
 
       
-        <h2 id="正则表达式符号与方法"><a href="#正则表达式符号与方法" class="headerlink" title="正则表达式符号与方法"></a>正则表达式符号与方法</h2><h3 id="常用符号"><a href="#常用符号" class="headerlink" title="常用符号"></a>常用符号</h3><p>图片看不太清楚，可以右键另存为~ 或者鼠标拖动一下到另外一个网页查看 - -<br><img src="https://static.oschina.net/uploads/space/2017/1014/144139_5p8C_3080373.png" width="1200" hegiht="1600" align="center"></p>
-<h3 id="常用方法："><a href="#常用方法：" class="headerlink" title="常用方法："></a>常用方法：</h3><p>findall()：匹配所有符合规律的内容 返回包含结果的列表。  传入参数re.S 使 . 包括 \n 。<br>search()：匹配并提取第一个符合规律的内容，返回一个正则表达式对象（Object）。</p>
-<h4 id="sub-：替换符合规律的内容，返回替换后的值。"><a href="#sub-：替换符合规律的内容，返回替换后的值。" class="headerlink" title="sub()：替换符合规律的内容，返回替换后的值。"></a>sub()：替换符合规律的内容，返回替换后的值。</h4><p>sub()应用：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">old_url = <span class="string">"http://www.baidu.com/?pageNum=1"</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,total_page+<span class="number">1</span>):</span><br><span class="line">    new_links = re.sub(<span class="string">'pageNum=\d+'</span>,<span class="string">'pageNum=%d'</span> %i , old_url, re.S)</span><br><span class="line">    print(new_links)</span><br><span class="line"><span class="comment">#输出结果</span></span><br><span class="line">http://www.baidu.com/?pageNum=1</span><br><span class="line">http://www.baidu.com/?pageNum=2.....(一直到20)</span><br></pre></td></tr></table></figure></p>
+        <h2 id="scrapy四部曲"><a href="#scrapy四部曲" class="headerlink" title="scrapy四部曲"></a>scrapy四部曲</h2><ul>
+<li><p>新建项目 (scrapy startproject xxx)：新建一个新的爬虫项目（1:scrapy startproject mySpider 2：scrapy genspider xxx         “xxx.cn”）</p>
+</li>
+<li><p>明确目标 （编写items.py）：明确你想要抓取的目标，创建数据模型类。</p>
+<h3 id="items-py"><a href="#items-py" class="headerlink" title="items.py"></a>items.py</h3><p>items.py里存放的是我们要爬取数据的字段信息,比如我们要爬去图片信息，文章标题，标签，价格，那么items.py就可以这么定义：</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">JobItem</span><span class="params">(scrapy.Item)</span>:</span></span><br><span class="line">  img = scrapy.Field()</span><br><span class="line">  title = scrapy.Field()</span><br><span class="line">  tag = scrapy.Field()</span><br><span class="line">  price = scrapy.Field()</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>制作爬虫 （spiders/xxspider.py）：制作爬虫开始爬取网页</p>
+<h3 id="爬数据"><a href="#爬数据" class="headerlink" title="爬数据"></a>爬数据</h3><p>在当前目录下输入命令，将在mySpider/spider目录下创建一个名为xxx的爬虫，并指定爬取域的范围：<br>scrapy genspider xxx “xxx.cn”<br>打开 mySpider/spider目录里的 xxx.py，默认增加了下列代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ItcastSpider</span><span class="params">(scrapy.Spider)</span>:</span></span><br><span class="line">    name = <span class="string">"xxx"</span></span><br><span class="line">    allowed_domains = [<span class="string">"xxx.cn"</span>]</span><br><span class="line">    start_urls = (</span><br><span class="line">        <span class="string">'http://www.xxx.cn/'</span>,</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<p><strong>parse(self, response)</strong> ：解析的方法，每个初始URL完成下载后将被调用，调用的时候传入从每一个URL传回的Response对象来作为唯一参数，主要作用如下：</p>
+<p>负责解析返回的网页数据(response.body)，提取结构化数据(生成item)<br>生成需要下一页的URL请求。<br>将start_urls的值修改为需要爬取的第一个url。</p>
+<h3 id="取数据"><a href="#取数据" class="headerlink" title="取数据"></a>取数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mySpider.items <span class="keyword">import</span> JobItem  <span class="comment"># 导入我们创建好的模型类</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse</span><span class="params">(self, response)</span>:</span></span><br><span class="line">    items = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> each <span class="keyword">in</span> response.xpath(<span class="string">"//div[@class='li_txt']"</span>):</span><br><span class="line">        <span class="comment"># 将我们得到的数据封装到一个 `JobItem` 对象</span></span><br><span class="line">        item = JobItem()</span><br><span class="line">        <span class="comment">#extract()方法返回的都是unicode字符串</span></span><br><span class="line">        name = each.xpath(<span class="string">"h3/text()"</span>).extract()</span><br><span class="line">        title = each.xpath(<span class="string">"h4/text()"</span>).extract()</span><br><span class="line">        info = each.xpath(<span class="string">"p/text()"</span>).extract()</span><br><span class="line"></span><br><span class="line">        <span class="comment">#xpath返回的是包含一个元素的列表</span></span><br><span class="line">        item[<span class="string">'name'</span>] = name[<span class="number">0</span>]</span><br><span class="line">        item[<span class="string">'title'</span>] = title[<span class="number">0</span>]</span><br><span class="line">        item[<span class="string">'info'</span>] = info[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment">#items.append(item)</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">#将获取的数据交给pipelines</span></span><br><span class="line">        <span class="keyword">yield</span> item</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 返回数据，不经过pipeline</span></span><br><span class="line">    <span class="comment">#return items</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>存储内容 （pipelines.py）：设计管道存储爬取内容</p>
+</li>
+</ul>
+<h2 id="scrapy的项目结构："><a href="#scrapy的项目结构：" class="headerlink" title="scrapy的项目结构："></a>scrapy的项目结构：</h2><ul>
+<li>items.py 负责数据模型的建立，类似于实体类。</li>
+<li>middlewares.py 自己定义的中间件。</li>
+<li>pipelines.py 负责对spider返回数据的处理。</li>
+<li>settings.py 负责对整个爬虫的配置。</li>
+<li>spiders目录 负责存放继承自scrapy的爬虫类。</li>
+<li>scrapy.cfg scrapy基础配置</li>
+</ul>
+<h2 id="scrapy架构图"><a href="#scrapy架构图" class="headerlink" title="scrapy架构图"></a>scrapy架构图</h2><p><img src="https://segmentfault.com/img/bVco7P" alt="scrapy架构图" title="example"><br><strong>Scrapy Engine(引擎)</strong>: 负责Spider、ItemPipeline、Downloader、Scheduler中间的通讯，信号、数据传递等。</p>
+<p><strong>Scheduler(调度器)</strong>: 它负责接受引擎发送过来的Request请求，并按照一定的方式进行整理排列，入队，当引擎需要时，交还给引擎。</p>
+<p><strong>Downloader（下载器）</strong>：负责下载Scrapy Engine(引擎)发送的所有Requests请求，并将其获取到的Responses交还给Scrapy Engine(引擎)，由引擎交给Spider来处理，</p>
+<p><strong>Spider（爬虫）</strong>：它负责处理所有Responses,从中分析提取数据，获取Item字段需要的数据，并将需要跟进的URL提交给引擎，再次进入Scheduler(调度器)，</p>
+<p><strong>Item Pipeline(管道)</strong>：它负责处理Spider中获取到的Item，并进行进行后期处理（详细分析、过滤、存储等）的地方.</p>
+<p><strong>Downloader Middlewares（下载中间件）</strong>：你可以当作是一个可以自定义扩展下载功能的组件。</p>
+<p><strong>Spider Middlewares（Spider中间件）</strong>：你可以理解为是一个可以自定扩展和操作引擎和Spider中间通信的功能组件（比如进入Spider的Responses;和从Spider出去的Requests）</p>
+<h3 id="pipeline-py"><a href="#pipeline-py" class="headerlink" title="pipeline.py"></a>pipeline.py</h3><p>pipeline主要是对spiders中爬虫的返回的数据的处理，这里我们可以让写入到数据库，也可以让写入到文件等等。</p>
 
       
     </div>
@@ -522,7 +536,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+            <a href="/tags/scrapy/" rel="tag"># scrapy</a>
           
         </div>
       
@@ -535,8 +549,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/CSS居中/" rel="next" title="CSS居中">
-                <i class="fa fa-chevron-left"></i> CSS居中
+              <a href="/多线程爬取猫眼电影TOP100/" rel="next" title="多线程爬取猫眼电影TOP100">
+                <i class="fa fa-chevron-left"></i> 多线程爬取猫眼电影TOP100
               </a>
             
           </div>
@@ -544,10 +558,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/多线程爬取猫眼电影TOP100/" rel="prev" title="多线程爬取猫眼电影TOP100">
-                多线程爬取猫眼电影TOP100 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -712,7 +722,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式符号与方法"><span class="nav-number">1.</span> <span class="nav-text">正则表达式符号与方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用符号"><span class="nav-number">1.1.</span> <span class="nav-text">常用符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法："><span class="nav-number">1.2.</span> <span class="nav-text">常用方法：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#sub-：替换符合规律的内容，返回替换后的值。"><span class="nav-number">1.2.1.</span> <span class="nav-text">sub()：替换符合规律的内容，返回替换后的值。</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#scrapy四部曲"><span class="nav-number">1.</span> <span class="nav-text">scrapy四部曲</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#items-py"><span class="nav-number">1.1.</span> <span class="nav-text">items.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爬数据"><span class="nav-number">1.2.</span> <span class="nav-text">爬数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取数据"><span class="nav-number">1.3.</span> <span class="nav-text">取数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scrapy的项目结构："><span class="nav-number">2.</span> <span class="nav-text">scrapy的项目结构：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scrapy架构图"><span class="nav-number">3.</span> <span class="nav-text">scrapy架构图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pipeline-py"><span class="nav-number">3.1.</span> <span class="nav-text">pipeline.py</span></a></li></ol></li></ol></div>
             
 
           </div>
